@@ -23,8 +23,8 @@ $\textsf{
 
 st.write(header)
 
-data = pd.read_csv("/Users/manas/Downloads/2021SC04132/Dissertation/project/recommendation.csv")
-inputdata = pd.read_csv('/Users/manas/Downloads/2021SC04132/Dissertation/project/data.csv')
+data = pd.read_csv("recommendation.csv")
+inputdata = pd.read_csv('data.csv')
 airlinelist = data['platng_carrier_key'].unique()
 
 airline = st.selectbox("Select Airline", airlinelist)
