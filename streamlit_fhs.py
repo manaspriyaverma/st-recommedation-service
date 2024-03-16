@@ -42,12 +42,16 @@ if value:
 	true_data = inputdata[(inputdata['platng_carrier_key'] == airline) & (inputdata['tckt_route_key'] == route) & (inputdata['travel_date'] == traveldate)]
 	recommeded_data = data[(data['platng_carrier_key'] == airline) & (data['tckt_route_key'] == route) & (data['travel_date'] == traveldate)]
 
+	st.write("1")
+
 	simulated_data = true_data.copy()
 	simulated_data['price'] = simulated_data.apply(lambda x: x['price']*(1-recommeded_data['discount'][0]) if x['bk_windw_cat'] == recommeded_data['bk_windw_cat'][0] else x['price'], axis = 1)
 	simulated_data['bookings'] = simulated_data.apply(lambda x: x['bookings'] + recommeded_data['incremental_bookings'][0] if x['bk_windw_cat'] == recommeded_data['bk_windw_cat'][0] else x['bookings'], axis = 1)
 	simulated_data['type'] = 'Recommeded'
 
 	true_data['type'] = 'Actual'
+
+	st.write("2")
 
 	st.write("**Recommendation: " + 
 		"Offering discount of " + 
