@@ -44,9 +44,9 @@ if value:
 
 	st.write("1")
 
-	simulated_data = inputdata[(inputdata['platng_carrier_key'] == airline) & (inputdata['tckt_route_key'] == route) & (inputdata['travel_date'] == traveldate)]
-	simulated_data['price'] = simulated_data.apply(lambda x: x['price']*(1-recommeded_data['discount'][0]) if x['bk_windw_cat'] == recommeded_data['bk_windw_cat'][0] else x['price'], axis = 1)
-	simulated_data['bookings'] = simulated_data.apply(lambda x: x['bookings'] + recommeded_data['incremental_bookings'][0] if x['bk_windw_cat'] == recommeded_data['bk_windw_cat'][0] else x['bookings'], axis = 1)
+	simulated_data = true_data.copy()
+	simulated_data['price'] = simulated_data.apply(lambda x: x['price']*(1-recommeded_data['discount'].iloc[0]) if x['bk_windw_cat'] == recommeded_data['bk_windw_cat'].iloc[0] else x['price'], axis = 1)
+	simulated_data['bookings'] = simulated_data.apply(lambda x: x['bookings'] + recommeded_data['incremental_bookings'].iloc[0] if x['bk_windw_cat'] == recommeded_data['bk_windw_cat'].iloc[0] else x['bookings'], axis = 1)
 	simulated_data['type'] = 'Recommeded'
 
 	true_data['type'] = 'Actual'
@@ -55,9 +55,9 @@ if value:
 
 	st.write("**Recommendation: " + 
 		"Offering discount of " + 
-		str(int(recommeded_data['discount'][0]*100)) + "%" + 
-		" on booking window of " + str(recommeded_data['bk_windw_cat'][0]) + 
-		" will lead to incremental bookings of " + str(int(recommeded_data['incremental_bookings'][0])) + "**")
+		str(int(recommeded_data['discount'].iloc[0]*100)) + "%" + 
+		" on booking window of " + str(recommeded_data['bk_windw_cat'].iloc[0]) + 
+		" will lead to incremental bookings of " + str(int(recommeded_data['incremental_bookings'].iloc[0])) + "**")
 
 
 	st.write('Showing Price/Bookings Plots')
