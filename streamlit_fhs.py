@@ -1,4 +1,5 @@
 import streamlit as st
+import joblib
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
@@ -23,7 +24,7 @@ $\textsf{
 st.write(header)
 
 data = pd.read_csv("recommendation.csv")
-inputdata = pd.read_csv('data.csv')
+inputdata = pd.read_csv("data.csv")
 airlinelist = data['platng_carrier_key'].unique()
 
 airline = st.selectbox("Select Airline", airlinelist)
